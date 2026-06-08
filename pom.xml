@@ -7,6 +7,8 @@
   <version>1.0-SNAPSHOT</version>
   <name>prose-app</name>
   <url>http://maven.apache.org</url>
+
+
   <repositories>
     <repository>
       <id>github</id>
@@ -16,6 +18,15 @@
       </snapshots>
     </repository>
   </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/beheshta24/prose-app</url>
+    </repository>
+  </distributionManagement>
+
   <dependencies>
 
     <dependency>

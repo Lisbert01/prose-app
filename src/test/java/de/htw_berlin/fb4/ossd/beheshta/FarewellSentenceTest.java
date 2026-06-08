@@ -1,4 +1,17 @@
 package de.htw_berlin.fb4.ossd.beheshta;
 
-public class FarewellSentenceTest {
+import junit.framework.TestCase;
+
+public class FarewellSentenceTest extends TestCase {
+
+    public void testGet() {
+
+        FarewellSentence sentence =
+                new FarewellSentence();
+
+        assertEquals(
+                "Bis zum nächsten Mal!",
+                sentence.get()
+        );
+    }
 }

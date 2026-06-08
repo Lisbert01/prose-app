@@ -1,4 +1,17 @@
 package de.htw_berlin.fb4.ossd.beheshta;
 
-public class GreetingSentenceTest {
+import junit.framework.TestCase;
+
+public class GreetingSentenceTest extends TestCase {
+
+    public void testGet() {
+
+        GreetingSentence sentence =
+                new GreetingSentence();
+
+        assertEquals(
+                "Hallo zusammen!",
+                sentence.get()
+        );
+    }
 }

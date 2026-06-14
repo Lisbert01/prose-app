@@ -1,23 +1,28 @@
 name: PR Maven Tests
+  on: pull_request: branches: - main
+jobs: test: runs-on: ubuntu-latest
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
 
-on:
-  pull_request:
-    branches:
-      - main
+  - name: Setup Java
+    uses: actions/setup-java@v4
+    with:
+      distribution: temurin
+      java-version: '21'
+      overwrite-settings: false
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
+  - name: Configure Maven settings
+    uses: s4u/maven-settings-action@v4.0.0
+    with:
+      servers: |
+        [
+          {
+            "id": "prose-builder",
+            "username": "${{ github.actor }}",
+            "password": "${{ secrets.GH_PACKAGES_TOKEN }}"
+          }
+        ]
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '21'
-
-      - name: Run tests
-        run: mvn test
+  - name: Run tests
+    run: mvn test

@@ -1,0 +1,40 @@
+name: Maven Package
+
+on:
+workflow_dispatch:
+
+jobs:
+build:
+
+  ```
+runs-on: ubuntu-latest
+
+permissions:
+  contents: read
+  packages: write
+
+steps:
+
+  - uses: actions/checkout@v4
+
+  - name: Set up Java
+    uses: actions/setup-java@v4
+    with:
+      distribution: temurin
+      java-version: 25
+      cache: maven
+      overwrite-settings: false
+
+  - name: Configure Maven settings
+    uses: s4u/maven-settings-action@v4.0.0
+    with:
+      servers: '[{"id":"github","username":"${{ github.actor }}","password":"${{ secrets.GH_PACKAGES_TOKEN }}"}]'
+
+  - name: Build with Maven
+    run: mvn -B package --file pom.xml
+
+  - name: Publish to GitHub Packages
+    run: mvn deploy
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+

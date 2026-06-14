@@ -1,5 +1,6 @@
+![Build](https://github.com/beheshta24/prose-app/actions/workflows/pr-tests.yml/badge.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 # Prose-App
-
 ## Overview
 Prose-App is a simple Maven-based Java project for generating prose using imported sentence dependencies.
 
